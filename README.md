@@ -1,2 +1,2 @@
 # Competitve Programming 
-CP
+Competitive Programming Solutions, Templates and Patterns
