@@ -1,2 +1,0 @@
-0/1 Knapsack DP
-https://leetcode.com/problems/partition-equal-subset-sum/discuss/462699/Whiteboard-Editorial.-All-Approaches-explained.

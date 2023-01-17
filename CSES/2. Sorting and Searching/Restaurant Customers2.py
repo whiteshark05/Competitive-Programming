@@ -1,6 +1,51 @@
-import sys, io, os
-sys.setrecursionlimit(10**8)
+#!/usr/bin/env python
+import os
+import sys
 from io import BytesIO, IOBase
+from collections import defaultdict as ddic
+from itertools import combinations
+ 
+ 
+def divisors(n):
+    for d in range(1, int(n**0.5) + 1):
+        if n % d == 0:
+            yield d
+ 
+ 
+def issq(n):
+    if n < 0:
+        return False
+    r = int(n**0.5)
+    return r * r == n
+ 
+ 
+def solve(tmp):
+    tmp.sort()
+    count = 0
+    ans = 0
+    for v, t in tmp:
+        if t == 'start':
+            count += 1
+        else:
+            count -= 1
+        ans = max(ans, count)
+    return ans
+
+ 
+ 
+def main():
+    T = readint()
+    tmp = []
+    for tc in range(1, T + 1):
+        X = readlist()
+        a, b = X[0], X[1]
+        tmp.append([a,'start'])
+        tmp.append([b, 'end'])
+    print(solve(tmp))
+ 
+ 
+# region fastio
+ 
 BUFSIZE = 8192
  
  
@@ -53,28 +98,8 @@ sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
 input = lambda: sys.stdin.readline().rstrip("\r\n")
 readint = lambda: int(input())
 readlist = lambda: list(map(int, input().split()))
-
-N, M = readlist()
-graph = [[] for _ in range(N)]
-for _ in range(M):
-    u, v = map(int, input().split())
-    u -= 1; v -= 1
-    graph[u].append(v)
-    graph[v].append(u)
  
-ans = [1]
-MAX = 10**6
-def dfs(node, visited):
-    for nex in graph[node]:
-        if nex in visited:
-            continue
-        ans[0] += 1
-        visited.add(nex)
-        dfs(nex, visited)
-        visited.discard(nex)
-        if ans[0] >= MAX:
-            print(MAX)
-            quit()
+# endregion
  
-dfs(0, {0})
-print(ans[0])
+if __name__ == "__main__":
+    main()
