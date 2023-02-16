@@ -1,5 +1,0 @@
-1. Can there be negative numbers
-2. Can there be large/infinity numbers?
-3. Can there be any duplicates?
-4. Can we reuse the number?
-
