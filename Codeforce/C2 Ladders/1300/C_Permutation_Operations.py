@@ -1,4 +1,4 @@
-import sys, math, itertools, functools, collections
+import sys, math, itertools, functools, collections, heapq
 input = sys.stdin.readline
 #sys.setrecursionlimit(10**6)
 
@@ -17,25 +17,28 @@ test_case = ri()
 # 4. Brute force if small input size
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
+    
     ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
+    h = []
+    for i in range(1,n):
+        if A[i-1] > A[i]:
+            heapq.heappush(h,(A[i-1]-A[i], i))
+    if not h:
+        return [1] * n
+    add = 1
+    while h:
+        d, i = heapq.heappop(h)
+        A[i] += add
+        ans.append(i+1)
+        if len(ans) == n:
+            break
+        add += 1
+        heapq.heappush(h,(d-add,i))
+    
     return ans
     pass
 
 for _ in range(test_case):
-    x, n = rmi()
+    n = ri()
     A = ra()
-    print(solve())
+    print(*solve())

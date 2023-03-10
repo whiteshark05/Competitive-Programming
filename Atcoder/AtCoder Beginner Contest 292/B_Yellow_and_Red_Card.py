@@ -8,7 +8,7 @@ rmi  = lambda: map(int, input().split())
 ra = lambda: [int(x) for x in input().split()]
 pa = lambda x: print (" ".join(map(str, x)))
 
-test_case = ri()
+test_case = 1
 
 #-------- DIFFERENT WAYS TO UNSTUCK ------------ 
 # 1. Frequency/Value domain and Pigeon Hole Principle 
@@ -17,25 +17,24 @@ test_case = ri()
 # 4. Brute force if small input size
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
+    
     pass
 
 for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
-    print(solve())
+    N, Q =rmi()
+    players = collections.Counter()
+    for _ in range(Q):
+        e, d = rmi()
+        if e == 1:
+            if players[d] != 2:
+                players[d] += 1
+        elif e == 2:
+            if players[d] != 2:
+                players[d] = 2
+        else:
+            if players[d] == 2:
+                print('Yes')
+            else:
+                print("No")
+            
+    

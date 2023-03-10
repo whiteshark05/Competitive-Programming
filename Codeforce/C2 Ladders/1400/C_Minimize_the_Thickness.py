@@ -16,26 +16,25 @@ test_case = ri()
 # 3. Prefix Suffix
 # 4. Brute force if small input size
 
+def go(i, target):
+    if i == n: return 0
+    cur = 0
+    for j in range(i+1, n+1):
+        cur += A[j-1]
+        if cur > target: return n
+        if cur == target:
+            return max(j-i, go(j,target))
+    return n
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
-    pass
+    best = n
+    curSum = 0
+    for len in range(1, n):
+        curSum += A[len - 1]
+        best = min(best, go(0, curSum))
+    return best
+                
 
 for _ in range(test_case):
-    x, n = rmi()
+    n = ri()
     A = ra()
     print(solve())

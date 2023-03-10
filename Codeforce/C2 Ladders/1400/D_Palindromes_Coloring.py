@@ -17,25 +17,19 @@ test_case = ri()
 # 4. Brute force if small input size
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
+    freq = collections.Counter(s)
+    even = 0
+    odd = 0
+    for f in freq.values():
+        even += f//(2)
+        odd += f%(2)
 
-    return ans
-    pass
+    q, r = divmod(even, k)
+    odd += 2*r
+    return 2*q + min(odd//k, 1)
+    
 
 for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
+    n, k = rmi()
+    s = rs()
     print(solve())

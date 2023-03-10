@@ -15,27 +15,31 @@ test_case = ri()
 # 2. Search from end to start instead of start to end
 # 3. Prefix Suffix
 # 4. Brute force if small input size
+def isSubSequence(s,t):
+    i = 0
+    for j in range(len(t)):
+        if t[j] == s[i]:
+            i += 1
+        
+        if i == len(s):
+            return True
+    return False
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
+    S = s + p
+    freq = collections.Counter(S)
+    freq2 = collections.Counter(t)
+    for c in freq2:
+        if freq[c] < freq2[c]:
+            return False
+    if not isSubSequence(s,t):
+        return False
+    #print('test',isSubSequence('ab','acxb'))
+    return True
     pass
 
 for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
-    print(solve())
+    s = rs()
+    t = rs()
+    p = rs()
+    print('YES' if solve() else 'NO')

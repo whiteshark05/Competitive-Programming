@@ -8,7 +8,7 @@ rmi  = lambda: map(int, input().split())
 ra = lambda: [int(x) for x in input().split()]
 pa = lambda x: print (" ".join(map(str, x)))
 
-test_case = ri()
+test_case = 1
 
 #-------- DIFFERENT WAYS TO UNSTUCK ------------ 
 # 1. Frequency/Value domain and Pigeon Hole Principle 
@@ -16,26 +16,18 @@ test_case = ri()
 # 3. Prefix Suffix
 # 4. Brute force if small input size
 
+
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
-    pass
-
-for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
-    print(solve())
+	m = {}
+	for i, num in enumerate(a):
+		if x - num in m:
+			return [m[x-num] + 1, i + 1]
+		m[num] = i
+	return [-1, -1]    
+ 
+n, x = rmi()
+a = ra()    
+if solve() != [-1, -1]:
+	pa(solve())
+else:
+	print("IMPOSSIBLE") 

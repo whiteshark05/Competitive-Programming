@@ -16,26 +16,19 @@ test_case = ri()
 # 3. Prefix Suffix
 # 4. Brute force if small input size
 
-def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
-    pass
+def solve(h,p):
+    x = int(math.log2(p))
+    have = 2**h - 1
+    ready = 1
+    ans = 0
+    while have > 0:
+        have -= ready
+        ans += 1
+        ready *= 2
+        if ready >= p:
+            break
+    return ans + int(math.ceil(have/p))
 
 for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
-    print(solve())
+    h, p = rmi()
+    print(solve(h,p))

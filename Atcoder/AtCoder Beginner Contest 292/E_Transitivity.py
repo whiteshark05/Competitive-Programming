@@ -8,16 +8,18 @@ rmi  = lambda: map(int, input().split())
 ra = lambda: [int(x) for x in input().split()]
 pa = lambda x: print (" ".join(map(str, x)))
 
-mod = 10**9+7
+test_case = ri()
+
+#-------- DIFFERENT WAYS TO UNSTUCK ------------ 
+# 1. Frequency/Value domain and Pigeon Hole Principle 
+# 2. Search from end to start instead of start to end
+# 3. Prefix Suffix
+# 4. Brute force if small input size
 
 def solve():
-    dp = [1] + [0] * (x) 
-    for coin in coins:
-        for i in range(coin, x + 1):        
-            dp[i] += dp[i-coin]
-            dp[i] %= mod           
-    return dp[-1] % mod
     
-n, x = rmi()
-coins = ra()
-print(solve())
+    pass
+
+for _ in range(test_case):
+    
+    print(solve())

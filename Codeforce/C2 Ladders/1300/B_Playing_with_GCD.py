@@ -15,27 +15,30 @@ test_case = ri()
 # 2. Search from end to start instead of start to end
 # 3. Prefix Suffix
 # 4. Brute force if small input size
+def lcm(a, b):
+    if a > b:
+        greater = a
+    else:
+        greater = b
+    while(True):
+        if((greater % a == 0) and (greater % b == 0)):
+            lcm = greater
+            break
+        greater += 1
+    return lcm
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
-
-    return ans
-    pass
+    L = A + [1]
+    B = [1] * len(L)
+    for i in range(1, len(L)):
+        B.append(lcm(L[i],L[i-1]))
+    
+    for i in range(1,len(B)):
+        if math.gcd(B[i],B[i+1]) != A[i]:
+            return False
+    return True
 
 for _ in range(test_case):
-    x, n = rmi()
+    n = ri()
     A = ra()
-    print(solve())
+    print('YES' if solve() else 'NO')

@@ -1,11 +1,26 @@
 import sys, math, itertools, functools, collections
 input = sys.stdin.readline
 #sys.setrecursionlimit(10**6)
-rs  = lambda: input()
+"""
+def ncr(n, r, p):
+ 
+    num = den = 1 
+    for i in range(r):
+        num = (num * (n - i)) % p
+        den = (den * (i + 1)) % p
+    return (num * pow(den, p - 2, p)) % p
+"""
+rs  = lambda: input().strip()
 ri  = lambda: int(input())
 rmi  = lambda: map(int, input().split())
 ra = lambda: [int(x) for x in input().split()]
 pa = lambda x: print (" ".join(map(str, x)))
+t = 1
+def solve():
+	pass
+	
+for _ in range(t):
+	print(solve())
 mod = 998244353
 n = ri()
 a = ra()

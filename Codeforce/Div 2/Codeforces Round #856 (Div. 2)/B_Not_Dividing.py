@@ -17,25 +17,39 @@ test_case = ri()
 # 4. Brute force if small input size
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
-    for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
+    if A[0] == 1:
+        A[0] += 1
 
-    return ans
+    for i in range(1, n):
+        if A[i] == 1:
+            A[i] += 1
+        if A[i] % A[i-1] == 0:
+            A[i] += 1
+    return A
+
+
+
+for _ in range(test_case):
+    n = ri()
+    A = ra()
+    print(*solve())
+
+
+import sys, math, itertools, functools, collections
+input = sys.stdin.readline
+
+rs  = lambda: input().strip()
+ri  = lambda: int(input())
+rmi  = lambda: map(int, input().split())
+ra = lambda: [int(x) for x in input().split()]
+pa = lambda x: print (" ".join(map(str, x)))
+
+test_case = ri()
+
+def solve():
+    how to program like this?
     pass
 
 for _ in range(test_case):
-    x, n = rmi()
-    A = ra()
+    
     print(solve())

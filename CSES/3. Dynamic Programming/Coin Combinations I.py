@@ -1,5 +1,6 @@
-import collections, heapq, itertools, math
-groupby = itertools.groupby
+import sys, math, itertools, functools, collections
+input = sys.stdin.readline
+
 rs  = lambda: input()
 ri  = lambda: int(input())
 rmi  = lambda: map(int, input().split())
@@ -19,3 +20,4 @@ def solve():
 n, x = rmi()
 coins = ra()
 print(solve())
+

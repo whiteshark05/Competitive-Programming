@@ -17,25 +17,42 @@ test_case = ri()
 # 4. Brute force if small input size
 
 def solve():
-    Intervals = [[0,x]]
-    i = -1
-    ans = []
+    pos_ans = []
+    neg_ans = []
+    pos = 0
+    neg = 0
     for num in A:
-        for s, e in Intervals:
-            if s <= num <= e:
-                edit = i
-                break
-        
-        Intervals[i][1] = num
-        best = 0
-        for s, e in Intervals:
-            best = max(best, s - e)
-        ans.append(best)
+        if num > 0:
+            pos += 1
+        elif num < 0:
+            neg += 1
+    
+    for i in range(1, pos+1):
+        pos_ans.append(i)
 
-    return ans
+    cur = pos_ans[-1] if pos_ans else 0
+    
+    for i in range(neg):
+        cur -= 1
+        pos_ans.append(cur)
+    
+    
+    if pos > neg:
+        tmp = pos - neg
+        neg_ans = [1, 0] * neg + [x for x in range(1, tmp + 1)]
+    else:
+        tmp = neg - pos
+        neg_ans = [1, 0] * neg + [0] * tmp
+
+        
+
+
+    return pos_ans, neg_ans
     pass
 
 for _ in range(test_case):
-    x, n = rmi()
+    n = ri()
     A = ra()
-    print(solve())
+    x, y = solve()
+    print(*x)
+    print(*y)
